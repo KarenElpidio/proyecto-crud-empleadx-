@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"text/template"
+	_"github.com/go-sql-driver/mysql"
 )
 
 var plantillas = template.Must(template.ParseGlob("plantillas/*"))
