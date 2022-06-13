@@ -1,0 +1,40 @@
+{{ define "crear"}}
+{{template "cabecera"}}
+
+<div class="card">
+    <div class="card-header">    Help Desk   </div>
+
+    <div class="card-body">
+        <form method= "post" action ="insertar">
+
+        <div class="form-group">
+        <label for="">título:</label>
+        <input type="text"
+            class="form-control" titulo="" id="" aria-describedby="helpId" placeholder="">
+        <small id="helpId" class="form-text text-muted">Help text</small>
+        </div>
+
+
+        <div class="form-group">
+        <label for="">Correo: </label>
+        <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="">
+        <small id="emailHelpId" class="form-text text-muted">Help text</small>
+        </div>
+
+        <div class="form-group">
+        <label for="">Descripción</label>
+        <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+        <small id="helpId" class="form-text text-muted">Help text</small>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Agregar un nuevx tarea</button>
+
+        </form>
+
+    </div>
+   
+</div>
+
+{{template "pie"}}
+{{end}}

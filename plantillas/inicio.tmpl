@@ -1,0 +1,30 @@
+{{ define "inicio" }}
+{{ template "cabecera"}}
+
+<a name="" id="" class="btn btn-primary" href="/crear" role="button">Agregar tarea</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Módulo</th>
+            <th>Fecha</th>
+            <th>Correo</th>
+            <th>Acciones</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td> 1 </td>
+            <td> Karen E</td>
+             <td> 01/02/2022</td>
+            <td>elpidio@gmail.com</td>
+            <td> Editar | Borrar </td>
+        </tr>
+    </tbody>
+</table>
+
+{{template "pie"}} 
+
+{{end}}
