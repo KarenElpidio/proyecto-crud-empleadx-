@@ -32,13 +32,15 @@ func conexionBD() (conexion *sql.DB) {
 var plantillas = template.Must(template.ParseGlob("plantillas/*"))
 
 
-
+// RUTAS
 func main() {
 	http.HandleFunc("/", Inicio)
 	http.HandleFunc("/crear", Crear)
 	http.HandleFunc("/insertar", Insertar)
 	http.HandleFunc("/borrar", Borrar)
 	http.HandleFunc("/editar", Editar)
+	http.HandleFunc("/actualizar", Actualizar)
+
 
 	log.Println("Servidor corriendo...")
 	http.ListenAndServe(":8080", nil)
@@ -52,8 +54,10 @@ type Empleadx struct {
 }
 
 
-func Inicio (w http.ResponseWriter, r *http.Request) {
 
+// INICIO 
+
+func Inicio (w http.ResponseWriter, r *http.Request) {
 
 	conexionEstablecida := conexionBD()
 	registros, err := conexionEstablecida.Query("SELECT * FROM empleadxs")
@@ -84,7 +88,6 @@ func Inicio (w http.ResponseWriter, r *http.Request) {
 	plantillas.ExecuteTemplate(w, "inicio", arregloEmpleadxs)
 
 }
-
 
 func Crear (w http.ResponseWriter, r *http.Request) {
 	plantillas.ExecuteTemplate(w, "crear", nil)
@@ -166,5 +169,30 @@ func Editar(w http.ResponseWriter, r *http.Request){
 
 	plantillas.ExecuteTemplate(w, "editar", empleadx)
 
+
+}
+
+
+// ACTUALIZAR 
+
+func Actualizar(w http.ResponseWriter, r *http.Request) {
+	if r.Method=="POST" {
+
+		id:= r.FormValue("id")
+		nombre:= r.FormValue("nombre")
+		correo:= r.FormValue("correo")
+
+		conexionEstablecida := conexionBD()
+		modificarRegistros, err := conexionEstablecida.Prepare("UPDATE empleadxs SET nombre=?, correo=? WHERE id=?")
+
+		if err != nil {
+			panic(err.Error())
+		}
+
+		modificarRegistros.Exec(nombre, correo, id)
+
+		http.Redirect(w,r,"/",301)
+
+	}
 
 }
