@@ -1,27 +1,39 @@
 {{ define "inicio" }}
 {{ template "cabecera"}}
 
-<a name="" id="" class="btn btn-primary" href="/crear" role="button">Agregar tarea</a>
+<a name="" id="" class="btn btn-primary" href="/crear" role="button">Agregar empleadx</a>
 
 <table class="table">
     <thead>
         <tr>
             <th>ID</th>
-            <th>Módulo</th>
-            <th>Fecha</th>
+            <th>Nombre</th>
             <th>Correo</th>
-            <th>Acciones</th>
             
         </tr>
     </thead>
     <tbody>
+
+
+{{ range.}}
+
         <tr>
-            <td> 1 </td>
-            <td> Karen E</td>
-             <td> 01/02/2022</td>
-            <td>elpidio@gmail.com</td>
-            <td> Editar | Borrar </td>
+            <td> {{.Id}} </td>
+            <td> {{.Nombre}} </td>
+            <td> {{.Correo}} </td>
+            <td>
+            
+        <a name="" id="" class="btn btn-warning" href="/editar?id={{.Id}}" role="button">Editar
+            
+            | 
+    <a name="" id="" class="btn btn-danger" href="/borrar?id={{.Id}}" role="button">Borrar
+         
+            
+            </td>
         </tr>
+
+{{end}}
+
     </tbody>
 </table>
 
